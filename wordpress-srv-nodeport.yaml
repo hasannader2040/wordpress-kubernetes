@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-svc
+  labels:
+    app: wordpress
+    tier: frontend
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 32737
+  selector:
+    app: wordpress
+    tier: frontend
+  type: NodePort
+

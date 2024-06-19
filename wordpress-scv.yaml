@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-svc
+  labels:
+    app: wordpress-svc  # Corrected typo from 'ordpress-svc' to 'wordpress-svc'
+spec:
+  type: LoadBalancer   # Suitable for exposing service externally
+  ports:
+    - port: 80          # Corrected structure, ports should be a list of items
+  selector:
+    app: myapp          # Make sure this matches the labels of the pods you want to expose
+    tier: frontend      # Additional label for more specific selection if necessary
+
