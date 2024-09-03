@@ -37,35 +37,38 @@ Follow these steps to set up and deploy WordPress on your Kubernetes cluster:
 
    ```bash
    git clone -b diffrent-device https://github.com/hasannader2040/wordpress-kubernetes.git
+``
 
-   Navigate to the project directory:
+ 2-  **Navigate to the project directory:**
 
-bash
-Copy code
+```bash
 cd wordpress-kubernetes
+```
+
 Create a Kubernetes Namespace (optional):
 
 It is a good practice to create a separate namespace for the project:
 
-bash
-Copy code
+```bash
 kubectl create namespace wordpress
+```
+
 Apply Kubernetes Configurations:
 
 Apply the Kubernetes deployment and service configuration files:
 
-bash
-Copy code
+```bash
 kubectl apply -f k8s/mysql-deployment.yaml
 kubectl apply -f k8s/wordpress-deployment.yaml
+```
 This will deploy both MySQL and WordPress to your Kubernetes cluster.
 
 Verifying the Deployment
 To verify that the WordPress and MySQL pods are running, use the following command:
 
-bash
-Copy code
+```bash
 kubectl get pods -n wordpress
+```
 You should see output indicating that both the WordPress and MySQL pods are up and running.
 
 Accessing the WordPress Site
@@ -73,43 +76,45 @@ To access the WordPress site, you need to expose it using a Kubernetes service. 
 
 Get the NodePort:
 
-bash
-Copy code
+```bash
 kubectl get svc -n wordpress
+```
 Find the NodePort for the WordPress service. It will be something like 30080:80/TCP.
 
 Access WordPress:
 
 Open your web browser and go to http://<Node_IP>:<NodePort>. Replace <Node_IP> with your Kubernetes cluster IP or localhost if using Minikube. Replace <NodePort> with the port number retrieved in the previous step.
 
-Usage
+## Usage
 Here are some examples of how to manage the WordPress Kubernetes deployment:
 
 Scaling the Deployment:
 
 To scale the WordPress deployment to more replicas, use:
 
-bash
-Copy code
+```bash
 kubectl scale deployment wordpress --replicas=3 -n wordpress
+```
 This command will scale the WordPress pods to three replicas.
 
-Updating the Deployment:
+## Updating the Deployment:
 
 To update the WordPress version or configuration, modify the wordpress-deployment.yaml file and apply the changes:
 
-bash
-Copy code
+```bash
 kubectl apply -f k8s/wordpress-deployment.yaml
-Deleting the Deployment:
+```
+
+## Deleting the Deployment:
 
 To delete the entire deployment (both WordPress and MySQL), use:
 
-bash
-Copy code
+```bash
 kubectl delete -f k8s/mysql-deployment.yaml
 kubectl delete -f k8s/wordpress-deployment.yaml
-Tools and Technologies
+```
+
+## Tools and Technologies
 This project utilizes the following tools and technologies:
 
 WordPress: A popular open-source content management system (CMS) used for building websites.
@@ -119,15 +124,14 @@ Docker: Used to containerize the WordPress and MySQL applications.
 Contributing
 Contributions are welcome! Please follow these steps to contribute:
 
-Fork the repository.
-Create a new branch (git checkout -b feature/your-feature-name).
-Make your changes and commit them (git commit -m 'Add some feature').
-Push to the branch (git push origin feature/your-feature-name).
-Open a pull request.
-License
+1- Fork the repository.
+2- Create a new branch (git checkout -b feature/your-feature-name).
+3- Make your changes and commit them (git commit -m 'Add some feature').
+4-Push to the branch (git push origin feature/your-feature-name).
+5- Open a pull request.
+
+
+## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
-Acknowledgements
-Thanks to the Kubernetes community for their great documentation and support.
-Special thanks to the WordPress developers for providing such a robust and flexible CMS.
 
